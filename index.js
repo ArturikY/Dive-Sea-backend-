@@ -67,7 +67,7 @@ app.post(
 	ProductController.create
 )
 
-app.listen('dive-sea-backend.netlify.app' || 5000, err => {
+app.listen('dive-sea-backend.vercel.app' || 5000, err => {
 	if (err) {
 		return console.log(err)
 	}
