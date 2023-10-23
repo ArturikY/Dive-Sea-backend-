@@ -4,6 +4,7 @@
 	"main": "index.js",
 	"license": "MIT",
 	"type": "module",
+	"Access-Control-Allow-Origin": "*",
 	"scripts": {
 		"start": "node index.js",
 		"dev": "nodemon index.js"
