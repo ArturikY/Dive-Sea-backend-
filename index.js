@@ -31,17 +31,17 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage })
 
+const corsOptions = {
+	origin: 'dive-sea-frontend.vercel.app',
+	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+	allowedHeaders: ['Content-Type', 'Authorization'],
+	credentials: true,
+	maxAge: 600,
+}
+
 app.use(express.json())
-app.use(cors())
+app.use(cors(corsOptions))
 app.use('/uploads', express.static('uploads'))
-app.use((res, next) => {
-	res.headers('Access-Control-Allow-Origin', '*')
-	res.headers('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
-	res.headers('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-	res.header['Access-Control-Allow-Origin'] = '*'
-	next()
-})
-app.options('*', cors())
 
 app.post(
 	'/auth/login',
