@@ -38,8 +38,10 @@ app.use((res, next) => {
 	res.headers('Access-Control-Allow-Origin', '*')
 	res.headers('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
 	res.headers('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+	res.header['Access-Control-Allow-Origin'] = '*'
 	next()
 })
+app.options('*', cors())
 
 app.post(
 	'/auth/login',
@@ -61,7 +63,7 @@ app.post('/upload', upload.single('image'), (req, res) => {
 	})
 })
 
-app.get('/collections', CollectionController.getAll)
+app.get('/collections', cors(), CollectionController.getAll)
 
 app.get('/products', ProductController.getAll)
 app.get('/products/:id', ProductController.getOne)
