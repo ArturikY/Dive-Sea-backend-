@@ -63,7 +63,7 @@ app.post('/upload', upload.single('image'), (req, res) => {
 	})
 })
 
-app.get('/collections', cors(corsOptions), CollectionController.getAll)
+app.get('/collections', cors(), CollectionController.getAll)
 
 app.get('/products', ProductController.getAll)
 app.get('/products/:id', ProductController.getOne)
