@@ -32,11 +32,10 @@ const storage = multer.diskStorage({
 const upload = multer({ storage })
 
 const corsOptions = {
-	origin: 'dive-sea-frontend.vercel.app',
+	origin: ['dive-sea-frontend.vercel.app'],
 	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 	allowedHeaders: ['Content-Type', 'Authorization'],
 	credentials: true,
-	maxAge: 600,
 }
 
 app.use(express.json())
