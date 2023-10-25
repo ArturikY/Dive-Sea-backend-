@@ -14,6 +14,7 @@ import {
 	productCreateValidation,
 	registerValidation,
 } from './validations.js'
+import cors from './cors.js'
 
 const app = express()
 
@@ -63,7 +64,7 @@ app.post('/upload', upload.single('image'), (req, res) => {
 	})
 })
 
-app.get('/collections', CollectionController.getAll)
+app.get('/collections', cors(), CollectionController.getAll)
 
 app.get('/products', ProductController.getAll)
 app.get('/products/:id', ProductController.getOne)
