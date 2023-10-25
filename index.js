@@ -1,4 +1,4 @@
-// import cors from 'cors'
+import cors from 'cors'
 import express from 'express'
 import fs from 'fs'
 import multer from 'multer'
@@ -14,7 +14,6 @@ import {
 	productCreateValidation,
 	registerValidation,
 } from './validations.js'
-import cors from './cors.js'
 
 const app = express()
 
@@ -32,16 +31,16 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage })
 
-// const corsOptions = {
-// 	origin: '*',
-// 	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-// 	allowedHeaders: ['Content-Type', 'Authorization'],
-// 	credentials: true,
-// 	maxAge: 600,
-// }
+const corsOptions = {
+	origin: 'dive-sea-frontend.vercel.app',
+	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+	allowedHeaders: ['Content-Type', 'Authorization'],
+	credentials: true,
+	maxAge: 600,
+}
 
 app.use(express.json())
-// app.use(cors(corsOptions))
+app.use(cors(corsOptions))
 app.use('/uploads', express.static('uploads'))
 
 app.post(
@@ -64,7 +63,7 @@ app.post('/upload', upload.single('image'), (req, res) => {
 	})
 })
 
-app.get('/collections', cors(), CollectionController.getAll)
+app.get('/collections', CollectionController.getAll)
 
 app.get('/products', ProductController.getAll)
 app.get('/products/:id', ProductController.getOne)
